@@ -1,0 +1,39 @@
+swagger: "2.0"
+info:
+  title: "Node.js App API"
+  description: "API Gateway for Orders and Shipment services"
+  version: "1.0.0"
+schemes:
+  - "https"
+paths:
+  /orders:
+    get:
+      summary: "Get list of orders"
+      operationId: "getOrders"
+      x-google-backend:
+        address: "https://helloworld-93326999095.asia-south2.run.app/orders"
+      responses:
+        '200':
+          description: "A list of orders"
+        '500':
+          description: "Internal server error"
+  /shipment:
+    get:
+      summary: "Get shipments"
+      operationId: "getShipment"
+      x-google-backend:
+        address: "https://helloworld-93326999095.asia-south2.run.app/shipment"
+      security:
+        - api_key: []  # Require API key for /shipment endpoint
+        - api_key_header: []
+      responses:
+        '200':
+          description: "Shipments list"
+        '500':
+          description: "Internal server error"
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "x-api-key"
+    in: "header"
+

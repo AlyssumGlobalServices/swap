@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // Use PORT environment variable or default to 3000
 
 // Mock data for Orders
 const orders = [
@@ -46,6 +46,8 @@ app.get('/shipment/:orderId', (req, res) => {
         });
     }
 });
+
+app.get('/', (req, res) => res.send('Hello World!'))
 
 // Start the server
 app.listen(port, () => {
